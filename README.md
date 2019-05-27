@@ -1,3 +1,12 @@
+# Blockbook Fork
+This is my personal fork of Blockbook. I thought it best to fork the repo in order to freeze the code base for my own
+personal use. The main change of this fork is to edit the Docker container used to build the .deb file, so that it
+targets Ubunut 18.04 instead of Debian.
+
+Soon I'll hopefully have a synchronized database to accompany this repository.
+
+-----
+
 [![Go Report Card](https://goreportcard.com/badge/trezor/blockbook)](https://goreportcard.com/report/trezor/blockbook)
 
 # Blockbook
