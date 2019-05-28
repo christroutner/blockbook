@@ -1,11 +1,30 @@
-# Blockbook Fork
-This is my personal fork of Blockbook. I thought it best to fork the repo in order to freeze the code base for my own
-personal use. The main change of this fork is to edit the Docker container used to build the .deb file, so that it
+# Blockbook Fork - BCH
+This is my personal fork of Blockbook. I thought it best to fork the repo in
+order to freeze the code base for my own personal use in creating a copy of
+the indexer for BCH. The main change of this
+fork is to edit the Docker container used to build the .deb file, so that it
 targets Ubunut 18.04 instead of Debian.
 
-Soon I'll hopefully have a synchronized database to accompany this repository.
+This repository is used to build the .deb files needed to install blockbook
+inside [this Ubuntu-based Docker container](https://github.com/christroutner/docker-ubuntu-blockbook).
+
+## Steps to build
+For reference, you can view the steps
+in [the user manual](https://wiki.trezor.io/User_manual:Running_a_local_instance_of_Trezor_Wallet_backend_(Blockbook)) or
+in [this locally saved copy](user-manual-05-27-2019.pdf)
+
+- Clone this repository and enter the directory it creates.
+
+- `make all-bcash`
+
+- The above command will generate two `.deb` files in the `build` directory.
+These .deb files are used
+by [this Docker container](https://github.com/christroutner/docker-ubuntu-blockbook)
+for running Blockbook inside a Docker container.
+
 
 -----
+Old README:
 
 [![Go Report Card](https://goreportcard.com/badge/trezor/blockbook)](https://goreportcard.com/report/trezor/blockbook)
 
@@ -36,7 +55,7 @@ Contribution guide is [here](CONTRIBUTING.md).
 
 ## Implemented coins
 
-Blockbook currently supports over 30 coins. The Trezor team implemented 
+Blockbook currently supports over 30 coins. The Trezor team implemented
 
 - Bitcoin, Bitcoin Cash, Zcash, Dash, Litecoin, Bitcoin Gold, Ethereum, Ethereum Classic, Dogecoin, Namecoin, Vertcoin, DigiByte, Liquid
 
@@ -51,7 +70,7 @@ List of all implemented coins is in [the registry of ports](/docs/ports.md).
 
 #### Out of memory when doing initial synchronization
 
-How to reduce memory footprint of the initial sync: 
+How to reduce memory footprint of the initial sync:
 
 - disable rocksdb cache by parameter `-dbcache=0`, the default size is 500MB
 - run blockbook with parameter `-workers=1`. This disables bulk import mode, which caches a lot of data in memory (not in rocksdb cache). It will run about twice as slowly but especially for smaller blockchains it is no problem at all.
@@ -60,9 +79,9 @@ Please add your experience to this [issue](https://github.com/trezor/blockbook/i
 
 #### Error `internalState: database is in inconsistent state and cannot be used`
 
-Blockbook was killed during the initial import, most commonly by OOM killer. By default, Blockbook performs the initial import in bulk import mode, which for performance reasons does not store all the data immediately to the database. If Blockbook is killed during this phase, the database is left in an inconsistent state. 
+Blockbook was killed during the initial import, most commonly by OOM killer. By default, Blockbook performs the initial import in bulk import mode, which for performance reasons does not store all the data immediately to the database. If Blockbook is killed during this phase, the database is left in an inconsistent state.
 
-See above how to reduce the memory footprint, delete the database files and run the import again. 
+See above how to reduce the memory footprint, delete the database files and run the import again.
 
 Check [this](https://github.com/trezor/blockbook/issues/89) or [this](https://github.com/trezor/blockbook/issues/147) issue for more info.
 
