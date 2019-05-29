@@ -5,6 +5,9 @@ the indexer for BCH. The main change of this
 fork is to edit the Docker container used to build the .deb file, so that it
 targets Ubunut 18.04 instead of Debian.
 
+Details can be found in this GitHub Issue:
+https://github.com/trezor/blockbook/issues/163
+
 This repository is used to build the .deb files needed to install blockbook
 inside [this Ubuntu-based Docker container](https://github.com/christroutner/docker-ubuntu-blockbook).
 
